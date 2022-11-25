@@ -1,11 +1,16 @@
 import styled from "styled-components";
 import React from "react";
 
-export default function CardCarb({ products }) {
+export default function CardCarb({ products, setSelecionado, selecionado }) {
+  function productSelected(product) {
+    if (selecionado.includes(product.name)) {
+    }
+    setSelecionado([...selecionado, product.name]);
+  }
   return products.map((product) => {
     if (product.category === "proteina") {
       return (
-        <Product>
+        <Product onClick={() => productSelected(product)}>
           <img alt="foto do produto" src={product.image} />
           <h3>{product.name}</h3>
         </Product>
