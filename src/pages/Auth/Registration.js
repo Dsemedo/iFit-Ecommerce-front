@@ -13,7 +13,7 @@ export default function Login(){
  async function Enviarform(e){
  e.preventDefault(); 
  const body = {name, email, phone, password};
- axios.post('http://localhost:5000/signup', body).then((response) => {
+ axios.post('https://ifit-ecommerce.onrender.com/signup', body).then((response) => {
     navigate("/");
   }).catch((error) => {
     console.error('Erro ao fazer login');
