@@ -2,10 +2,13 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
-import Card from "./Card";
+import CardCarb from "./CardCarb.js";
+import CardProtein from "./CardProtein.js";
+import CardSalad from "./CardSalad.js";
 
 export default function Homepage() {
   const [products, setProducts] = useState([]);
+  const [selecionado, setSelecionado] = useState([]);
 
   const navigate = useNavigate();
 
@@ -24,7 +27,7 @@ export default function Homepage() {
       .catch();
   }, []);
 
-  console.log(products);
+  console.log(selecionado);
   return (
     <>
       <Header>
@@ -36,16 +39,24 @@ export default function Homepage() {
         <Options>
           <h2>Carboidratos</h2>
           <Cards>
-            <Card products={products} />
+            <CardCarb products={products} />
           </Cards>
         </Options>
         <Options>
           <h2>Proteínas</h2>
-          <Cards></Cards>
+          <Cards>
+            <CardProtein
+              products={products}
+              selecionado={selecionado}
+              setSelecionado={setSelecionado}
+            />
+          </Cards>
         </Options>
         <Options>
           <h2>Saladas</h2>
-          <Cards></Cards>
+          <Cards>
+            <CardSalad products={products} />
+          </Cards>
         </Options>
       </Container>
       <Footer onClick={() => navigate("/Cart")}>Ver o carrinho</Footer>
@@ -77,6 +88,9 @@ const Container = styled.div`
   align-items: center;
   flex-direction: column;
 
+  overflow-x: scroll;
+  overflow: scroll;
+
   h1 {
     font-size: 14px;
     height: 25px;
@@ -91,8 +105,6 @@ const Options = styled.div`
   width: 100vw;
   height: 20vh;
   margin-top: 5px;
-  overflow: scroll;
-  overflow-x: scroll;
   h2 {
     font-size: 25px;
   }
@@ -106,7 +118,6 @@ const Cards = styled.div`
   justify-content: flex-start;
   align-items: center;
   flex-direction: row;
-  background-color: yellowgreen;
 `;
 
 const Footer = styled.button`

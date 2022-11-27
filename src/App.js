@@ -4,6 +4,7 @@ import Homepage from "./pages/Homepage/Homepage.js";
 import Cart from "./pages/Cart/Cart.js";
 import Login from "./pages/Auth/Login.js";
 import Registration from "./pages/Auth/Registration.js";
+import Checkout from "./pages/Checkout/Checkout.js";
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
         <Route path="/signup" element={<Registration />} />
         <Route path="/homepage" element={<Homepage />} />
         <Route path="/cart" element={<Cart />} />
-        {/* <Route path="/checkout" element={<Checkout />} /> */}
+        <Route path="/checkout" element={<Checkout />} />
       </Routes>
     </BrowserRouter>
   );
