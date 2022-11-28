@@ -3,8 +3,15 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
 import Header from "../../components/Header.js";
+import { Footer, Message } from "../../components/Styled.js";
+import { Color1, Color2, Color3, Color4 } from "../../assets/Colors.js";
+import BackButtonRed from "../../assets/Images/BackLogo.svg";
 
 export default function Cart({ selected, products }) {
+  const navigate = useNavigate();
+
+  const [screen, setScreen] = useState(false);
+
   let carbo = {};
   let prot = {};
   let salad = {};
@@ -34,34 +41,58 @@ export default function Cart({ selected, products }) {
     }
   }
 
-  const navigate = useNavigate();
+  useEffect(() => {
+    if (
+      Object.keys(carbo).length === 0 ||
+      Object.keys(prot).length === 0 ||
+      Object.keys(salad).length === 0
+    ) {
+      navigate("/Homepage");
+    }
+  }, []);
+
+  function BackButton() {
+    setScreen(!screen);
+  }
+
   return (
     <>
       <Header />
       <Container>
+        <Message>Confira seu pedido!</Message>
         <CheckoutItems>
           <EachItem>
-            <p>Tipo</p>
-            <p>Descrição</p>
+            <h1>Tipo</h1>
+            <h2>Descrição</h2>
           </EachItem>
           <EachItem>
-            <p>Carboidrado</p>
-            <p>{carbo.description}</p>
+            <h3>Carboidrado</h3>
+            <h4>{carbo.description}</h4>
           </EachItem>
           <EachItem>
-            <p>Proteína</p>
-            <p>{prot.description}</p>
+            <h3>Proteína</h3>
+            <h4>{prot.description}</h4>
           </EachItem>
           <EachItem>
-            <p>Salada</p>
-            <p>{salad.description}</p>
+            <h3>Salada</h3>
+            <h4>{salad.description}</h4>
           </EachItem>
         </CheckoutItems>
         <Footer onClick={() => navigate("/Homepage")}>
           Voltar para as opções
         </Footer>
-        <Footer>Confirmar pedido</Footer>
+        <Footer onClick={() => BackButton()}>Histórico de pedidos</Footer>
+        <Footer onClick={() => BackButton()}>Confirmar pedido</Footer>
       </Container>
+      <BlackScreen screen={screen}>
+        <WhiteScreen>
+          <img
+            src={BackButtonRed}
+            alt="BackButtonRed"
+            onClick={() => BackButton()}
+          />
+        </WhiteScreen>
+      </BlackScreen>
     </>
   );
 }
@@ -73,10 +104,9 @@ const Container = styled.div`
 `;
 
 const CheckoutItems = styled.div`
-  margin-top: 5vh;
   background-color: white;
   width: 80vw;
-  max-width: 500px;
+  max-width: 400px;
   height: 50vh;
   border: none;
   border-radius: 10px;
@@ -84,23 +114,71 @@ const CheckoutItems = styled.div`
 
 const EachItem = styled.div`
   display: flex;
-  align-items: center;
-  padding-left: 50px;
-  margin-bottom: 3vh;
+  margin-bottom: 5vh;
 
   p {
     width: 40vw;
     max-width: 250px;
     display: flex;
   }
+
+  h1,
+  h2 {
+    text-align: left;
+    padding-top: 10px;
+    color: ${Color4};
+    font-family: "Raleway", sans-serif;
+    font-style: normal;
+    font-size: 25px;
+    font-weight: 700;
+    margin-bottom: 3vh;
+    width: 35%;
+    margin-left: 5%;
+    word-wrap: break-word;
+  }
+
+  h3,
+  h4 {
+    font-family: "Dancing Script", cursive;
+    font-style: normal;
+    font-size: 20px;
+    font-weight: 700;
+    width: 35%;
+    margin-left: 5%;
+    word-wrap: break-word;
+    color: ${Color3};
+  }
+
+  h2,
+  h4 {
+    width: 55%;
+  }
 `;
 
-const Footer = styled.button`
+const BlackScreen = styled.div`
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgb(0, 0, 0, 0.7);
+  display: ${(props) => (props.screen ? "flex" : "none")};
+  justify-content: center;
+  align-items: center;
+`;
+
+const WhiteScreen = styled.div`
   width: 80vw;
-  max-width: 500px;
-  height: 5vh;
-  margin-top: 5vh;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
+  max-width: 400px;
+  height: 80vh;
+  background-color: ${Color2};
+  border-radius: 50px;
+  position: relative;
+
+  img {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+  }
 `;

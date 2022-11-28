@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { Color1, Color2, Color3 } from "../../assets/styles";
+import { Color1, Color2, Color3 } from "../../assets/Colors";
 
 export default function Login() {
   const [name, setName] = useState("");

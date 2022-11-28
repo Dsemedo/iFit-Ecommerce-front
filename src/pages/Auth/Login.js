@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { Color1, Color2, Color3, Color4 } from "../../assets/styles";
+import { Color1, Color2, Color3, Color4 } from "../../assets/Colors";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -101,7 +101,7 @@ const Container = styled.div`
   }
   h1 {
     font-family: "Dancing Script", cursive;
-    color: black;
+    color: ${Color4};
     font-style: normal;
     font-size: 100px;
     font-weight: 700;
@@ -109,7 +109,7 @@ const Container = styled.div`
     margin-bottom: 25px;
   }
   h2 {
-    color: black;
+    color: ${Color4};
     font-size: 14px;
     margin-top: 25px;
   }
@@ -117,7 +117,7 @@ const Container = styled.div`
   a:visited,
   a:active {
     text-decoration: unset;
-    color: black;
+    color: ${Color4};
     font-size: 15px;
     font-style: italic;
   }

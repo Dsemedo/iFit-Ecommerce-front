@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
 import Header from "../../components/Header.js";
+import { Footer, Message } from "../../components/Styled.js";
+import { Color1, Color2, Color3, Color4, Color5 } from "../../assets/Colors.js";
 
 export default function Cart({ selected, products }) {
   const navigate = useNavigate();
@@ -43,64 +45,81 @@ export default function Cart({ selected, products }) {
       prot.name === undefined ||
       salad.name === undefined
     ) {
-      return alert(
-        "Por favor meu anjo, selecionae pelo menos um item de cada tipo!"
-      );
+      alert("Por favor, selecione pelo menos um item de cada tipo!");
+      navigate("/Homepage");
     }
 
     navigate("/checkout");
   }
 
   return (
-    <>
+    <MaxContainer>
       <Header />
+      <Message>Confira seu pedido!</Message>
       <Container>
+        <h1>Carboidrato</h1>
         <Description item={carbo.name}>
           {carbo.name ? carbo.name : "Carboidrado ainda não selecionado"}
         </Description>
+        <h1>Proteína</h1>
         <Description item={prot.name}>
-          {prot.name ? prot.name : "Proteína ainda não selecionado"}
+          {prot.name ? prot.name : "Proteína ainda não selecionada"}
         </Description>
+        <h1>Salada</h1>
         <Description item={salad.name}>
-          {salad.name ? salad.name : "Salada ainda não selecionado"}
+          {salad.name ? salad.name : "Salada ainda não selecionada"}
         </Description>
       </Container>
       <Footer onClick={() => navigate("/Homepage")}>
         Voltar para as opções
       </Footer>
       <Footer onClick={() => FinalizeOrder()}>Finalizar o pedido</Footer>
-    </>
+    </MaxContainer>
   );
 }
 
-const Container = styled.div`
+const MaxContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 `;
 
+const Container = styled.div`
+  background-color: ${Color2};
+  display: flex;
+  flex-direction: column;
+  width: 80vw;
+  max-width: 400px;
+  height: 58vh;
+  border-radius: 10px;
+
+  h1 {
+    text-align: left;
+    padding-left: 10px;
+    padding-top: 10px;
+    color: ${Color4};
+    font-family: "Raleway", sans-serif;
+    font-style: normal;
+    font-size: 30px;
+    font-weight: 700;
+  }
+`;
+
 const Description = styled.div`
   width: 80vw;
   max-width: 400px;
-
-  height: 3vh;
-  max-height: 20px;
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
+  padding-left: 10px;
   align-items: center;
 
-  margin-bottom: 5vh;
+  font-family: "Dancing Script", cursive;
+  font-style: normal;
+  font-size: 23px;
+  font-weight: 700;
 
-  background-color: ${(props) => (props.item ? "white" : "yellow")};
-`;
+  margin-bottom: 8vh;
 
-const Footer = styled.button`
-  width: 80vw;
-  height: 5vh;
-  margin-top: 10%;
-  margin-left: 10vw;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
+  color: ${(props) => (props.item ? Color3 : Color5)};
 `;
