@@ -4,9 +4,16 @@ import styled from "styled-components";
 import axios from "axios";
 import Header from "../../components/Header.js";
 
-export default function Cart({ selected, setSelected }) {
+export default function Cart({ selected, setSelected, products }) {
   const navigate = useNavigate();
-  console.log("selected", selected);
+
+  const [items, setItems] = useState({});
+
+  function AddItems() {
+    setItems(products.filter((e) => e === selected));
+  }
+  console.log("items", items);
+
   return (
     <>
       <Header />

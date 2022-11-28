@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 export default function EachCard({
   product,
@@ -9,6 +9,17 @@ export default function EachCard({
   setChosen,
 }) {
   const [optionChoosen, setOptionChoosen] = useState(false);
+
+  // if (selected.filter((e) => e !== product.name){
+  //   console.log("product.name", product.name)
+  // }
+
+  useEffect(() => {
+    if (selected.includes(product.name)) {
+      setOptionChoosen(true);
+      setChosen(chosen + 1);
+    }
+  }, []);
 
   function productSelected() {
     if (optionChoosen === false && chosen === 0) {
