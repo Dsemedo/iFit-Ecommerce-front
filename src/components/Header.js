@@ -3,11 +3,26 @@ import { Color2 } from "../assets/Colors";
 import LogoutButton from "../assets/Images/Vector.svg";
 
 export default function Header() {
+  function logout() {
+    axios
+      .delete(`https://ifit-ecommerce.onrender.com/delete`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .then((response) => {
+        navigate("/");
+        console.log(response.data);
+      })
+      .catch((err) => {
+        console.log(err.response);
+      });
+  }
   return (
     <Head>
       <h1>iFit</h1>
       <h2>a marmita fitness do momento</h2>
-      <Logout src={LogoutButton} alt="LogoutButton" />
+      <Logout src={LogoutButton} alt="LogoutButton" onClick={() => logout()}/>
     </Head>
   );
 }
