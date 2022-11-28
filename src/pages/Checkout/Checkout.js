@@ -7,7 +7,7 @@ import { Footer, Message } from "../../components/Styled.js";
 import { Color1, Color2, Color3, Color4 } from "../../assets/Colors.js";
 import BackButtonRed from "../../assets/Images/BackLogo.svg";
 
-export default function Cart({ selected, products }) {
+export default function Cart({ selected, setSelected, products }) {
   const navigate = useNavigate();
 
   const [screen, setScreen] = useState(false);
@@ -55,6 +55,12 @@ export default function Cart({ selected, products }) {
     setScreen(!screen);
   }
 
+  function PlaceOrder() {
+    alert("Pedido feito com sucesso!");
+    setSelected([]);
+    navigate("/Homepage");
+  }
+
   return (
     <>
       <Header />
@@ -82,7 +88,7 @@ export default function Cart({ selected, products }) {
           Voltar para as opções
         </Footer>
         <Footer onClick={() => BackButton()}>Histórico de pedidos</Footer>
-        <Footer onClick={() => BackButton()}>Confirmar pedido</Footer>
+        <Footer onClick={() => PlaceOrder()}>Confirmar pedido</Footer>
       </Container>
       <BlackScreen screen={screen}>
         <WhiteScreen>
