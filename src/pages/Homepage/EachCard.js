@@ -46,28 +46,34 @@ export default function EachCard({
 }
 
 const Product = styled.div`
-  width: 100px;
-  height: 95%;
+  width: 110px;
+  height: 120px;
   margin-left: 15px;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   flex-direction: column;
   text-align: center;
   vertical-align: center;
-  border: ${(props) => (props.optionChoosen ? "5px solid green" : "none")};
+  border: ${(props) =>
+    props.optionChoosen ? "5px solid green" : "5px ridge transparent"};
   box-sizing: border-box;
 
   img {
-    width: 90%;
-    height: 90%;
+    width: 100px;
+    height: 80px;
     object-fit: cover;
   }
 
   h3 {
-    margin-top: 5%;
-    font-size: 13px;
-    height: 30%;
+    font-family: "Raleway", sans-serif;
+    color: black;
+    font-style: normal;
+    font-size: 12px;
+    font-weight: 400;
+
+    margin-top: 2%;
+    height: 20%;
     justify-content: center;
     align-items: center;
   }

@@ -10,6 +10,7 @@ export default function Header() {
 }
 
 const Head = styled.div`
+  box-sizing: border-box;
   width: 100vw;
   height: 15vh;
   border: 2px solid black;
@@ -17,12 +18,21 @@ const Head = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  border: none;
 
   h1 {
-    font-size: 35px;
+    font-family: "Dancing Script", cursive;
+    color: black;
+    font-style: normal;
+    font-size: 50px;
+    font-weight: 700;
   }
 
   h2 {
+    font-family: "Raleway", sans-serif;
+    color: black;
+    font-style: normal;
     font-size: 20px;
+    font-weight: 400;
   }
 `;

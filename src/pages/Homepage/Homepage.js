@@ -6,6 +6,7 @@ import CardCarb from "./CardCarb.js";
 import CardProtein from "./CardProtein.js";
 import CardSalad from "./CardSalad.js";
 import Header from "../../components/Header.js";
+import { Color2 } from "../../assets/styles.js";
 
 export default function Homepage({
   selected,
@@ -31,7 +32,7 @@ export default function Homepage({
   }, []);
 
   return (
-    <>
+    <MaxContainer>
       <Header />
       <Container>
         <h1>Selecione um item de cada para colocar na sua marmita!</h1>
@@ -67,9 +68,16 @@ export default function Homepage({
         </Options>
       </Container>
       <Footer onClick={() => navigate("/Cart")}>Ver o carrinho</Footer>
-    </>
+    </MaxContainer>
   );
 }
+
+const MaxContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
 
 const Container = styled.div`
   display: flex;
@@ -77,12 +85,15 @@ const Container = styled.div`
   align-items: center;
   flex-direction: column;
 
-  overflow-x: scroll;
-  overflow: scroll;
+  border-radius: 20px;
 
   h1 {
-    font-size: 14px;
-    height: 25px;
+    font-family: "Raleway", sans-serif;
+    color: ${Color2};
+    font-style: normal;
+    font-weight: 700;
+    font-size: 15px;
+
     display: flex;
     text-align: center;
     align-items: center;
@@ -91,29 +102,35 @@ const Container = styled.div`
 `;
 
 const Options = styled.div`
+  background-color: ${Color2};
+  border-radius: 10px;
   width: 100vw;
-  height: 20vh;
+  max-width: 400px;
   margin-top: 5px;
   h2 {
+    display: flex;
+    margin-left: 15px;
     font-size: 25px;
   }
+  overflow-x: scroll;
 `;
 
 const Cards = styled.div`
+  height: 20vh;
+  max-height: 120px;
   overflow: scroll;
   overflow-x: scroll;
-  height: 80%;
   display: flex;
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-start;
   flex-direction: row;
 `;
 
 const Footer = styled.button`
   width: 80vw;
+  max-width: 400px;
   height: 5vh;
   margin-top: 10%;
-  margin-left: 10vw;
   border: none;
   border-radius: 10px;
   cursor: pointer;
