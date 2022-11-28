@@ -7,10 +7,12 @@ import CardProtein from "./CardProtein.js";
 import CardSalad from "./CardSalad.js";
 import Header from "../../components/Header.js";
 
-export default function Homepage() {
-  const [products, setProducts] = useState([]);
-  const [selected, setSelected] = useState([]);
-
+export default function Homepage({
+  selected,
+  setSelected,
+  products,
+  setProducts,
+}) {
   const navigate = useNavigate();
 
   useEffect(() => {

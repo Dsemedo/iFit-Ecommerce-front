@@ -4,11 +4,17 @@ import styled from "styled-components";
 import axios from "axios";
 import Header from "../../components/Header.js";
 
-export default function Cart() {
+export default function Cart({ selected, setSelected }) {
   const navigate = useNavigate();
+  console.log("selected", selected);
   return (
     <>
       <Header />
+      <Container>
+        <Description></Description>
+        <Description></Description>
+        <Description></Description>
+      </Container>
       <Footer onClick={() => navigate("/Homepage")}>
         Voltar para as opções
       </Footer>
@@ -19,8 +25,14 @@ export default function Cart() {
 
 const Container = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+`;
+
+const Description = styled.div`
+  width: 80vw;
+  height: 5vh;
 `;
 
 const Footer = styled.button`
