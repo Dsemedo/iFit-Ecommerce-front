@@ -7,20 +7,56 @@ import Header from "../../components/Header.js";
 export default function Cart({ selected, setSelected, products }) {
   const navigate = useNavigate();
 
-  const [items, setItems] = useState({});
+  let carbo = {};
+  let prot = {};
+  let salad = {};
 
-  function AddItems() {
-    setItems(products.filter((e) => e === selected));
+  products.forEach(pickItems);
+
+  function pickItems(eachProduct) {
+    if (
+      selected.includes(eachProduct.name) &&
+      eachProduct.category === "carboidrato"
+    ) {
+      carbo = eachProduct;
+    }
+
+    if (
+      selected.includes(eachProduct.name) &&
+      eachProduct.category === "proteina"
+    ) {
+      prot = eachProduct;
+    }
+
+    if (
+      selected.includes(eachProduct.name) &&
+      eachProduct.category === "salada"
+    ) {
+      salad = eachProduct;
+    }
   }
-  console.log("items", items);
+
+  console.log("carbo", carbo);
+
+  // useEffect(() => {
+  //   if (selected.includes(products.name)) {
+  //     console.log("Entrei Aqui");
+  //   }
+  // }, []);
 
   return (
     <>
       <Header />
       <Container>
-        <Description></Description>
-        <Description></Description>
-        <Description></Description>
+        <Description>
+          {carbo.name ? carbo.name : "Carboidrado ainda não selecionado"}
+        </Description>
+        <Description>
+          {prot.name ? prot.name : "Proteína ainda não selecionado"}
+        </Description>
+        <Description>
+          {salad.name ? salad.name : "Salada ainda não selecionado"}
+        </Description>
       </Container>
       <Footer onClick={() => navigate("/Homepage")}>
         Voltar para as opções
@@ -38,8 +74,17 @@ const Container = styled.div`
 `;
 
 const Description = styled.div`
+  background-color: yellow;
   width: 80vw;
-  height: 5vh;
+  max-width: 400px;
+
+  height: 3vh;
+  max-height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-bottom: 5vh;
 `;
 
 const Footer = styled.button`

@@ -30,8 +30,6 @@ export default function Homepage({
       .catch();
   }, []);
 
-  console.log("selected", selected);
-
   return (
     <>
       <Header />
