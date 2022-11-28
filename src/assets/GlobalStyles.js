@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import { Color1 } from "./styles";
 
 const GlobalStyles = createGlobalStyle`
 html, body, div, span, applet, object, iframe,
@@ -32,7 +33,7 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background-color: #3859aa;
+	background-color: ${Color1};
 }
 ol, ul {
 	list-style: none;

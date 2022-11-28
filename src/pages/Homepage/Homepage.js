@@ -5,11 +5,15 @@ import axios from "axios";
 import CardCarb from "./CardCarb.js";
 import CardProtein from "./CardProtein.js";
 import CardSalad from "./CardSalad.js";
+import Header from "../../components/Header.js";
+import { Color2 } from "../../assets/styles.js";
 
-export default function Homepage() {
-  const [products, setProducts] = useState([]);
-  const [selecionado, setSelecionado] = useState([]);
-
+export default function Homepage({
+  selected,
+  setSelected,
+  products,
+  setProducts,
+}) {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -27,19 +31,19 @@ export default function Homepage() {
       .catch();
   }, []);
 
-  console.log(selecionado);
   return (
-    <>
-      <Header>
-        <h1>iFit</h1>
-        <h2>a marmita fitness do momento</h2>
-      </Header>
+    <MaxContainer>
+      <Header />
       <Container>
         <h1>Selecione um item de cada para colocar na sua marmita!</h1>
         <Options>
           <h2>Carboidratos</h2>
           <Cards>
-            <CardCarb products={products} />
+            <CardCarb
+              products={products}
+              selected={selected}
+              setSelected={setSelected}
+            />
           </Cards>
         </Options>
         <Options>
@@ -47,39 +51,32 @@ export default function Homepage() {
           <Cards>
             <CardProtein
               products={products}
-              selecionado={selecionado}
-              setSelecionado={setSelecionado}
+              selected={selected}
+              setSelected={setSelected}
             />
           </Cards>
         </Options>
         <Options>
           <h2>Saladas</h2>
           <Cards>
-            <CardSalad products={products} />
+            <CardSalad
+              products={products}
+              selected={selected}
+              setSelected={setSelected}
+            />
           </Cards>
         </Options>
       </Container>
       <Footer onClick={() => navigate("/Cart")}>Ver o carrinho</Footer>
-    </>
+    </MaxContainer>
   );
 }
 
-const Header = styled.div`
-  width: 100vw;
-  height: 15vh;
-  border: 2px solid black;
+const MaxContainer = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-
-  h1 {
-    font-size: 35px;
-  }
-
-  h2 {
-    font-size: 20px;
-  }
 `;
 
 const Container = styled.div`
@@ -88,12 +85,15 @@ const Container = styled.div`
   align-items: center;
   flex-direction: column;
 
-  overflow-x: scroll;
-  overflow: scroll;
+  border-radius: 20px;
 
   h1 {
-    font-size: 14px;
-    height: 25px;
+    font-family: "Raleway", sans-serif;
+    color: ${Color2};
+    font-style: normal;
+    font-weight: 700;
+    font-size: 15px;
+
     display: flex;
     text-align: center;
     align-items: center;
@@ -102,29 +102,35 @@ const Container = styled.div`
 `;
 
 const Options = styled.div`
+  background-color: ${Color2};
+  border-radius: 10px;
   width: 100vw;
-  height: 20vh;
+  max-width: 400px;
   margin-top: 5px;
   h2 {
+    display: flex;
+    margin-left: 15px;
     font-size: 25px;
   }
+  overflow-x: scroll;
 `;
 
 const Cards = styled.div`
+  height: 20vh;
+  max-height: 120px;
   overflow: scroll;
   overflow-x: scroll;
-  height: 80%;
   display: flex;
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-start;
   flex-direction: row;
 `;
 
 const Footer = styled.button`
   width: 80vw;
+  max-width: 400px;
   height: 5vh;
   margin-top: 10%;
-  margin-left: 10vw;
   border: none;
   border-radius: 10px;
   cursor: pointer;
