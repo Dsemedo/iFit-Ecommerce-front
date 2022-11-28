@@ -6,7 +6,8 @@ import CardCarb from "./CardCarb.js";
 import CardProtein from "./CardProtein.js";
 import CardSalad from "./CardSalad.js";
 import Header from "../../components/Header.js";
-import { Color2 } from "../../assets/styles.js";
+import { Color2 } from "../../assets/Colors.js";
+import { Footer, Message } from "../../components/Styled.js";
 
 export default function Homepage({
   selected,
@@ -35,7 +36,9 @@ export default function Homepage({
     <MaxContainer>
       <Header />
       <Container>
-        <h1>Selecione um item de cada para colocar na sua marmita!</h1>
+        <Message>
+          Selecione um item de cada para colocar na sua marmita!
+        </Message>
         <Options>
           <h2>Carboidratos</h2>
           <Cards>
@@ -86,19 +89,6 @@ const Container = styled.div`
   flex-direction: column;
 
   border-radius: 20px;
-
-  h1 {
-    font-family: "Raleway", sans-serif;
-    color: ${Color2};
-    font-style: normal;
-    font-weight: 700;
-    font-size: 15px;
-
-    display: flex;
-    text-align: center;
-    align-items: center;
-    justify-content: center;
-  }
 `;
 
 const Options = styled.div`
@@ -106,11 +96,14 @@ const Options = styled.div`
   border-radius: 10px;
   width: 100vw;
   max-width: 400px;
-  margin-top: 5px;
+  margin-bottom: 5px;
   h2 {
     display: flex;
     margin-left: 15px;
+    font-family: "Raleway", sans-serif;
+    font-style: normal;
     font-size: 25px;
+    font-weight: 700;
   }
   overflow-x: scroll;
 `;
@@ -124,14 +117,4 @@ const Cards = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   flex-direction: row;
-`;
-
-const Footer = styled.button`
-  width: 80vw;
-  max-width: 400px;
-  height: 5vh;
-  margin-top: 10%;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
 `;

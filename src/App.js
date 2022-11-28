@@ -34,7 +34,13 @@ function App() {
         />
         <Route
           path="/checkout"
-          element={<Checkout selected={selected} products={products} />}
+          element={
+            <Checkout
+              selected={selected}
+              setSelected={setSelected}
+              products={products}
+            />
+          }
         />
       </Routes>
     </BrowserRouter>

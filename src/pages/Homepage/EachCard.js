@@ -58,8 +58,10 @@ const Product = styled.div`
   border: ${(props) =>
     props.optionChoosen ? "5px solid green" : "5px ridge transparent"};
   box-sizing: border-box;
+  border-radius: 10px;
 
   img {
+    border-radius: 5px;
     width: 100px;
     height: 80px;
     object-fit: cover;
