@@ -2,11 +2,13 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
+import Header from "../../components/Header.js";
 
 export default function Cart() {
   const navigate = useNavigate();
   return (
     <>
+      <Header />
       <Footer onClick={() => navigate("/Homepage")}>
         Voltar para as opções
       </Footer>
@@ -14,6 +16,12 @@ export default function Cart() {
     </>
   );
 }
+
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
 const Footer = styled.button`
   width: 80vw;

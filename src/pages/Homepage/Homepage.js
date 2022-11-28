@@ -5,6 +5,7 @@ import axios from "axios";
 import CardCarb from "./CardCarb.js";
 import CardProtein from "./CardProtein.js";
 import CardSalad from "./CardSalad.js";
+import Header from "../../components/Header.js";
 
 export default function Homepage() {
   const [products, setProducts] = useState([]);
@@ -29,10 +30,7 @@ export default function Homepage() {
 
   return (
     <>
-      <Header>
-        <h1>iFit</h1>
-        <h2>a marmita fitness do momento</h2>
-      </Header>
+      <Header />
       <Container>
         <h1>Selecione um item de cada para colocar na sua marmita!</h1>
         <Options>
@@ -70,24 +68,6 @@ export default function Homepage() {
     </>
   );
 }
-
-const Header = styled.div`
-  width: 100vw;
-  height: 15vh;
-  border: 2px solid black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-
-  h1 {
-    font-size: 35px;
-  }
-
-  h2 {
-    font-size: 20px;
-  }
-`;
 
 const Container = styled.div`
   display: flex;
