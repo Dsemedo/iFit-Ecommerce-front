@@ -36,7 +36,20 @@ export default function Cart({ selected, setSelected, products }) {
     }
   }
 
-  console.log("carbo", carbo);
+  function FinalizeOrder() {
+    // navigate("/Checkout");
+    if (
+      carbo.name === undefined ||
+      prot.name === undefined ||
+      salad.name === undefined
+    ) {
+      return alert(
+        "Por favor meu anjo, selecionae pelo menos um item de cada tipo!"
+      );
+    }
+
+    navigate("/checkout");
+  }
 
   // useEffect(() => {
   //   if (selected.includes(products.name)) {
@@ -48,20 +61,20 @@ export default function Cart({ selected, setSelected, products }) {
     <>
       <Header />
       <Container>
-        <Description>
+        <Description item={carbo.name}>
           {carbo.name ? carbo.name : "Carboidrado ainda não selecionado"}
         </Description>
-        <Description>
+        <Description item={prot.name}>
           {prot.name ? prot.name : "Proteína ainda não selecionado"}
         </Description>
-        <Description>
+        <Description item={salad.name}>
           {salad.name ? salad.name : "Salada ainda não selecionado"}
         </Description>
       </Container>
       <Footer onClick={() => navigate("/Homepage")}>
         Voltar para as opções
       </Footer>
-      <Footer onClick={() => navigate("/Checkout")}>Finalizar o pedido</Footer>
+      <Footer onClick={() => FinalizeOrder()}>Finalizar o pedido</Footer>
     </>
   );
 }
@@ -74,7 +87,6 @@ const Container = styled.div`
 `;
 
 const Description = styled.div`
-  background-color: yellow;
   width: 80vw;
   max-width: 400px;
 
@@ -85,6 +97,8 @@ const Description = styled.div`
   align-items: center;
 
   margin-bottom: 5vh;
+
+  background-color: ${(props) => (props.item ? "white" : "yellow")};
 `;
 
 const Footer = styled.button`
