@@ -1,41 +1,20 @@
-import styled from "styled-components";
-import React from "react";
+import EachCard from "./EachCard.js";
+import React, { useState } from "react";
 
-export default function CardCarb({ products }) {
+export default function CardCarb({ products, setSelected, selected }) {
+  const [chosen, setChosen] = useState(0);
+
   return products.map((product) => {
-    if (product.category === "salada") {
-      return (
-        <Product>
-          <img alt="foto do produto" src={product.image} />
-          <h3>{product.name}</h3>
-        </Product>
-      );
-    }
+    return product.category === "salada" ? (
+      <EachCard
+        product={product}
+        setSelected={setSelected}
+        selected={selected}
+        chosen={chosen}
+        setChosen={setChosen}
+      />
+    ) : (
+      <></>
+    );
   });
 }
-
-const Product = styled.div`
-  width: 100px;
-  height: 95%;
-  margin-left: 15px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  text-align: center;
-  vertical-align: center;
-
-  img {
-    width: 90%;
-    height: 90%;
-    object-fit: cover;
-  }
-
-  h3 {
-    margin-top: 5%;
-    font-size: 13px;
-    height: 30%;
-    justify-content: center;
-    align-items: center;
-  }
-`;

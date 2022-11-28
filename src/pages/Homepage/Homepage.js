@@ -8,7 +8,7 @@ import CardSalad from "./CardSalad.js";
 
 export default function Homepage() {
   const [products, setProducts] = useState([]);
-  const [selecionado, setSelecionado] = useState([]);
+  const [selected, setSelected] = useState([]);
 
   const navigate = useNavigate();
 
@@ -27,7 +27,6 @@ export default function Homepage() {
       .catch();
   }, []);
 
-  console.log(selecionado);
   return (
     <>
       <Header>
@@ -39,7 +38,11 @@ export default function Homepage() {
         <Options>
           <h2>Carboidratos</h2>
           <Cards>
-            <CardCarb products={products} />
+            <CardCarb
+              products={products}
+              selected={selected}
+              setSelected={setSelected}
+            />
           </Cards>
         </Options>
         <Options>
@@ -47,15 +50,19 @@ export default function Homepage() {
           <Cards>
             <CardProtein
               products={products}
-              selecionado={selecionado}
-              setSelecionado={setSelecionado}
+              selected={selected}
+              setSelected={setSelected}
             />
           </Cards>
         </Options>
         <Options>
           <h2>Saladas</h2>
           <Cards>
-            <CardSalad products={products} />
+            <CardSalad
+              products={products}
+              selected={selected}
+              setSelected={setSelected}
+            />
           </Cards>
         </Options>
       </Container>
