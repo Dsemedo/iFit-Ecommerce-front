@@ -30,23 +30,11 @@ function App() {
         />
         <Route
           path="/cart"
-          element={
-            <Cart
-              selected={selected}
-              setSelected={setSelected}
-              products={products}
-            />
-          }
+          element={<Cart selected={selected} products={products} />}
         />
         <Route
           path="/checkout"
-          element={
-            <Checkout
-              selected={selected}
-              setSelected={setSelected}
-              products={products}
-            />
-          }
+          element={<Checkout selected={selected} products={products} />}
         />
       </Routes>
     </BrowserRouter>

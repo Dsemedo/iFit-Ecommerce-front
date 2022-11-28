@@ -4,7 +4,7 @@ import styled from "styled-components";
 import axios from "axios";
 import Header from "../../components/Header.js";
 
-export default function Cart({ selected, setSelected, products }) {
+export default function Cart({ selected, products }) {
   const navigate = useNavigate();
 
   let carbo = {};
@@ -50,12 +50,6 @@ export default function Cart({ selected, setSelected, products }) {
 
     navigate("/checkout");
   }
-
-  // useEffect(() => {
-  //   if (selected.includes(products.name)) {
-  //     console.log("Entrei Aqui");
-  //   }
-  // }, []);
 
   return (
     <>
